@@ -1,0 +1,28 @@
+#! /bin/sh
+
+case "$1" in
+    start)
+    echo "Loading assignment7 modules.."
+    echo "call scull load"
+    /bin/sh ./scull_load
+    echo "module load for faulty"
+    /bin/sh ./module_load faulty
+    echo "loading hello"
+    insmod ./hello.ko
+    ;;
+    stop)
+    echo "Unloading assignment7 modules.."
+    echo "call scull unload"
+    /bin/sh ./scull_unload
+    echo "module unload for faulty"
+    /bin/sh ./module_unload faulty
+    echo "unloading hello"
+    rmmod hello
+    ;;
+    *)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+esac
+
+exit 0
+
